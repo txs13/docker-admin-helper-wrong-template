@@ -1,0 +1,15 @@
+{
+  "name": "docker-admin-helper",
+  "version": "0.0.1",
+  "description": "App to help system administrator in handling Docker images access rights, images state",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dist/app.js",
+    "compile": "node ./node_modules/typescript/bin/tsc -p ./src && node ./node_modules/typescript/bin/tsc -p ./client && cp -r views dist/"
+  },
+  "author": "Anton Krotyuk",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
