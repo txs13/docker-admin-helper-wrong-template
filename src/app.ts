@@ -1,14 +1,25 @@
 import express from "express";
-import path from 'path';
+import mainRouter from "./routes/routes";
+import cors from 'cors'
+import path from "path"
+
+
+
 
 const app = express();
-app.set('port', process.env.PORT || 3000);
-app.use(express.static((path.join(__dirname, 'public'))))
-app.use("/scripts", express.static((path.join(__dirname, '../node_modules/jquery/dist'))))
-app.get('/', function(req: express.Request, res: express.Response) {
-  res.sendFile(path.join(__dirname, 'views/index.html'));
-});
 
-app.listen(app.get("port"), () => {
-  console.log(`app is listening on port ${app.get("port")}`)
-})
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
+
+// static frontend routing
+app.use(express.static(path.join(__dirname, 'public')));
+app.use("/scripts", express.static(path.join(__dirname, '../node_modules/jquery/dist')))
+
+// main router call
+app.use("/api/v1", mainRouter);
+
+
+// TODO - error handler
+
+export default app;

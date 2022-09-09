@@ -9,7 +9,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - NODE_ENV=dockerdev
+      - NODE_ENV=docker
     volumes:
       - .:/workspace
       - ~/.gitconfig:/root/.gitconfig

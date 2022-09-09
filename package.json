@@ -5,18 +5,37 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "node ./dist/app.js",
-    "compile": "node ./node_modules/typescript/bin/tsc -p ./src && node ./node_modules/typescript/bin/tsc -p ./client && cp -r views dist/"
+    "dev": "nodemon -e ts --exec \"yarn buildandrun\"",
+    "buildandrun": "node ./node_modules/typescript/bin/tsc -p ./src && node ./node_modules/typescript/bin/tsc -p ./client && cp -r ./views/index.html ./dist/public && MODE_ENV=DEV node ./dist/index.js",
+    "prod": "MODE_ENV=PROD node ./dist/index.js",
+    "build": "node ./node_modules/typescript/bin/tsc -p ./src && node ./node_modules/typescript/bin/tsc -p ./client && cp -r ./views/index.html ./dist/public"
   },
   "author": "Anton Krotyuk",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.5",
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "jquery": "^3.6.1"
+    "jquery": "^3.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.5.4",
+    "pino": "^8.5.0",
+    "zod": "^3.19.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/body-parser": "^1.19.2",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jquery": "^3.5.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/lodash": "^4.14.184",
+    "@types/node": "*",
+    "nodemon": "^2.0.19",
+    "pino-pretty": "^9.1.0",
     "typescript": "^4.8.2"
   }
 }

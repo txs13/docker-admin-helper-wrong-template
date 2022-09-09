@@ -10,5 +10,5 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   },
-  "files": ["app.ts"]
+  "files": ["index.ts"]
 }
