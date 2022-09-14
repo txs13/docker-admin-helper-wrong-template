@@ -9,7 +9,7 @@ function greeter (person:Person){
     return "hallo "+person.name;
 }
 
-var person=new Person("bert");
+var person=new Person("Toxes");
 
 $((function(){
     var message = greeter(person);

@@ -46,7 +46,7 @@ const getEnvVars = (): {
     appMode = "local"
   }
 
-  // process.env.MODE_ENV is either "DEV" or "PROD" when is run in develpment or production mode
+  // process.env.MODE_ENV is either "DEV" or "PROD" when is run in development or production mode
   let devModeString = process.env.MODE_ENV
   let devMode: boolean = true
   switch (devModeString) {
@@ -57,13 +57,13 @@ const getEnvVars = (): {
       devMode = false;
       break;
     default:
-      log.error("wrong process.env.MODE_ENV parameter");
-      process.exit();    
+      devMode = true;
+      break;
   }
 
   // assign right values depending on the app mode
-  const host = devMode ? process.env.DEV_HOST : process.env.PROD_HOST;
-  const port = devMode ? Number(process.env.DEV_PORT) : Number(process.env.PROD_PORT);
+  const host = devMode ? devHost : prodHost;
+  const port = devMode ? devPort : prodPort;
   if (devMode) {
     dbName = process.env.DB_NAME_DEV as string
     if (appMode === "docker") {

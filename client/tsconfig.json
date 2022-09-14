@@ -1,10 +1,13 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
     "outDir": "../dist/public",
     "sourceMap": true,
-    "rootDir": "."
+    "rootDir": ".",
+    "composite": true,
   },
-  "files": ["client.ts"]
+  "include": ["./**/*"],
+
 }
