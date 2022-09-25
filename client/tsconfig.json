@@ -1,12 +1,17 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "types": ["jquery", "jest", "bootstrap"],
+    "lib": ["es6", "dom"],
     "target": "es5",
     "outDir": "../dist/public",
     "sourceMap": true,
     "rootDir": ".",
     "composite": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["./**/*"],
 

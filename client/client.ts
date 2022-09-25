@@ -1,17 +1,7 @@
-class Person {
-  constructor(name:string) {
-      this.name=name;
-  }
-  name: string;
-}
+import { App } from "./classes/AppClass.js";
 
-function greeter (person:Person){ 
-    return "hallo "+person.name;
-}
+export const app = new App("", []);
 
-var person=new Person("Toxes");
-
-$((function(){
-    var message = greeter(person);
-    $("#status")[0].innerHTML=message;
-}));
+$(function () {
+  app.render();
+});
