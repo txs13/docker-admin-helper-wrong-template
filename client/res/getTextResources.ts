@@ -4,14 +4,15 @@ import {
   PropPair,
   TextResources,
   FormsNames,
-} from "./textResDatatypes";
+} from "./textResDatatypes.js";
 // for the purpose of the readability of text resources I decided to split all
 // the text labels between files - otherwise it becomes very difficult to find
 // a required record
-import { appGeneralTextRes } from "./textValues/appGeneralTextRes";
-import { loginFormTextRes } from "./textValues/loginFormTextRes";
-import { navbarTextRes } from "./textValues/navbarTextRes";
-import { registerFormTextRes } from "./textValues/registerFormTextRes";
+import { loadingTextRes } from "./textValues/loadingTextRes.js"
+import { appGeneralTextRes } from "./textValues/appGeneralTextRes.js";
+import { loginFormTextRes } from "./textValues/loginFormTextRes.js";
+import { navbarTextRes } from "./textValues/navbarTextRes.js";
+import { registerFormTextRes } from "./textValues/registerFormTextRes.js";
 
 // some labels / names could be similar on several forms - thus I decided not
 // to combine all the file into one, but to call file name to get the names from
@@ -29,11 +30,14 @@ const getTextFile = (file: FormsNames): TextResources => {
       break;
     case FormsNames.REGISTER:
       return registerFormTextRes;
-      break;      
+      break;
+    case FormsNames.LOADING:
+      return loadingTextRes;
+      break;        
   }
 }
 
-const getTextResources = (language: AppLanguageOptions, file: FormsNames) => {
+export const getTextResources = (language: AppLanguageOptions, file: FormsNames) => {
   const textResources: LocalizedTextResources = {};
   const textResourcesMultilang: TextResources = getTextFile(file);
   for (let prop in textResourcesMultilang) {
@@ -47,5 +51,3 @@ const getTextResources = (language: AppLanguageOptions, file: FormsNames) => {
   }
   return textResources;
 };
-
-export default getTextResources;

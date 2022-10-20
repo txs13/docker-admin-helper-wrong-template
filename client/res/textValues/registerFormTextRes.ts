@@ -1,4 +1,4 @@
-import { TextResources } from "../textResDatatypes";
+import { TextResources } from "../textResDatatypes.js";
 
 export const registerFormTextRes: TextResources = {
   formName: {
