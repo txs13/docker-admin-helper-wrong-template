@@ -11,8 +11,7 @@ export async function getPublicRoles(): Promise<RoleDocument[]> {
             return res as RoleDocument[]
         },
         error: function(err) {
-            console.log(err);
-            return []
+            throw new Error(err.statusText)
         } 
     })
 return []    

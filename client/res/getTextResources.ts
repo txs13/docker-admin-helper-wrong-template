@@ -13,6 +13,7 @@ import { appGeneralTextRes } from "./textValues/appGeneralTextRes.js";
 import { loginFormTextRes } from "./textValues/loginFormTextRes.js";
 import { navbarTextRes } from "./textValues/navbarTextRes.js";
 import { registerFormTextRes } from "./textValues/registerFormTextRes.js";
+import { errorTextRes } from "./textValues/errorTextRes.js"
 
 // some labels / names could be similar on several forms - thus I decided not
 // to combine all the file into one, but to call file name to get the names from
@@ -33,7 +34,10 @@ const getTextFile = (file: FormsNames): TextResources => {
       break;
     case FormsNames.LOADING:
       return loadingTextRes;
-      break;        
+      break;
+    case FormsNames.ERROR:
+      return errorTextRes;
+      break;          
   }
 }
 

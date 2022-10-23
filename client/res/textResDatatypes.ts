@@ -10,7 +10,8 @@ export enum FormsNames {
   "NAVBAR",
   "LOGIN",
   "REGISTER",
-  "LOADING"
+  "LOADING",
+  "ERROR"
 }
 
 export interface PropPair {
