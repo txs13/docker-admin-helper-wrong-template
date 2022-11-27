@@ -4,7 +4,11 @@ export default {
   clearMocks: true,
   coverageProvider: "v8",
   preset: "ts-jest",
-  testEnvironment: "node",
   testPathIgnorePatterns: ["/dist/"],
   verbose: true,
+  testEnvironment: "node",
+  extensionsToTreatAsEsm: [".ts"],
+  moduleNameMapper: {
+    "^(\\.{1,2}/.*)\\.js$": "$1",
+  },
 };

@@ -2,8 +2,10 @@ import { UserDocument, RoleDocument } from "../interfaces/inputInterfaces.js";
 import { getTextResources } from "../res/getTextResources.js";
 import { AppLanguageOptions, FormsNames } from "../res/textResDatatypes.js";
 import { renderLoading } from "./AppClassHelpers/renderLoading.js";
-import { renderError } from "./AppClassHelpers/renderError.js"
-import { renderLoginRegister } from "./AppClassHelpers/renderLoginRegister.js"
+import { renderError } from "./AppClassHelpers/renderError.js";
+import { renderLoginRegister } from "./AppClassHelpers/renderLoginRegister.js";
+import { decodePath } from "../router/router.js";
+import { RouteConst } from "../router/routerInterfaces.js";
 
 export interface AppPropertiesInterface {
   path: string;
@@ -32,6 +34,7 @@ const appStartupValues: AppPropertiesInterface = {
 export class App {
   constructor() {
     this.properties = appStartupValues;
+    
   }
 
   // properties
@@ -47,26 +50,39 @@ export class App {
     console.log(this.properties.roles);
     if (this.properties.path === "" && !this.properties.error) {
       renderLoading(this.properties.language);
+    } else {
+      const navigation = decodePath(this.properties.path);
+      if (navigation.appLanguage !== this.properties.language) {
+        this.properties = {
+          ...this.properties,
+          language: navigation.appLanguage,
+        };
+      }
+      switch(navigation.firstLevel) {
+        case RouteConst.LOGIN:
+          renderLoginRegister(navigation.appLanguage); 
+          break;
+      }
     }
     // no roles
     // TODO: forward to login page, register page is blocked
     // no user
     // TODO: forward to login page, register page is NOT blocked
-    if (this.properties.path === "/login" && this.properties.user === undefined) {
-      // consider silent logoff if user consciously calls login page
-      renderLoginRegister(this.properties.language);
-    }
-
+    // if (this.properties.path === "/login" && this.properties.user === undefined) {
+    //   // consider silent logoff if user consciously calls login page
+    //   renderLoginRegister(this.properties.language);
+    // }
 
     // process path through my router
     // TODO: router function call, router function to be settled
     // not known destination
     // TODO: forward to wrong destination page
     // error page redirect
-    if (this.properties.error && this.properties.path === "/error") {
-      renderError(this.properties.language, this.properties.error)
-    }
+    // if (this.properties.error && this.properties.path === "/error") {
+    //   renderError(this.properties.language, this.properties.error)
+    // }
   }
+
   //this method id supposed to remove all the related items from the DOM
   clear() {
     $("#app").empty();
@@ -80,7 +96,7 @@ export class App {
       this.properties.path,
       this.properties.path
     );
-    this.clear()
-    this.render()
+    this.clear();
+    this.render();
   }
 }

@@ -2,6 +2,8 @@ import { getPublicRoles } from "../api/roleApi.js";
 import { AppPropertiesInterface } from "../classes/AppClass.js";
 import { app } from "../client.js";
 import { RoleDocument } from "../interfaces/inputInterfaces.js";
+import { compilePath } from "../router/router.js";
+import { RouteConst } from "../router/routerInterfaces.js";
 
 export async function startupService(): Promise<AppPropertiesInterface> {
   // fetch public roles for register form and further use
@@ -23,7 +25,10 @@ export async function startupService(): Promise<AppPropertiesInterface> {
     // called only under certain conditions. Now I am calling it always
     // just to test my router
     return {
-      path: "/login",
+      path: compilePath({
+        appLanguage: app.properties.language,
+        firstLevel: RouteConst.LOGIN,
+      }),
       user: user,
       roles: roles,
       accessToken: accessToken,
@@ -34,7 +39,10 @@ export async function startupService(): Promise<AppPropertiesInterface> {
     };
   } catch (err: any) {
     return {
-      path: "/error",
+      path: compilePath({
+        appLanguage: app.properties.language,
+        firstLevel: RouteConst.ERROR,
+      }),
       user: undefined,
       roles: [],
       accessToken: undefined,

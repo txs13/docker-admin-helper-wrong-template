@@ -25,10 +25,10 @@ app.use(
   "/popper",
   express.static(path.join(__dirname, "../node_modules/@popperjs/core/dist"))
 );
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "public")));
 // so far this is the best possible way I found to redirect any browser request to the maim page
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
+  res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 // TODO - error handler
